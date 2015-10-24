@@ -6,6 +6,7 @@ public class Funcionario extends Pessoa{
 	private String cpf;
 	private String login;
 	private String senha;
+	private Caixa c;
 	
 	public Funcionario(){
 		super();
@@ -22,6 +23,18 @@ public class Funcionario extends Pessoa{
 		this.login = login;
 		this.senha = senha;
 	}
+	
+	public void abrirCaixa(String horaAbertura, double valorCaixaAbertura){
+		c = new Caixa();
+		c.setHoraAbertura(horaAbertura);
+		c.setValorCaixaAbertura(valorCaixaAbertura);
+	}
+	
+	public void FecharCaixa(String horaFechamento, double valorCaixaFechamento){
+		c.setHoraFechamento(horaFechamento);
+		c.setValorCaixaFechamento(valorCaixaFechamento);
+	}
+	
 	
 	public int getCodigo() {
 		return codigo;
