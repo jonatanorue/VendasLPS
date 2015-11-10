@@ -6,7 +6,6 @@ public class Venda {
 	private String dataVenda;
 	private String horaVenda;
 	private double valorVenda;
-	private Dinheiro d;
 	private Pagamento p;
 	
 	public Venda(){
@@ -27,19 +26,7 @@ public class Venda {
 		// instanciar item venda e fazer a lista de produtos
 		
 	}
-	
-	public void finalizarVenda(String tipoPagamento, double valorPago){
-		// tipo da venda
-		if(tipoPagamento.equals("dinheiro")){
-			d = new Dinheiro(getValorVenda(), valorPago);	
-		}else if(tipoPagamento.equals("cartaoCredito")){
-			p = new CartaoCredito();
-		}else if(tipoPagamento.equals("cartaoDebito")){
-			p = new CartaoDebito();
-		}else if(tipoPagamento.equals("cheque")){
-			p = new Cheque();
-		}
-	}
+		
 	
 	public void imprimirNota(){
 		//imprimir lista de produtos

@@ -1,6 +1,6 @@
 package br.ufms.bean;
 
-public class Funcionario extends Pessoa{
+public class Funcionario{
 	
 	private int codigo;
 	private String cpf;
@@ -17,7 +17,6 @@ public class Funcionario extends Pessoa{
 	}
 	
 	public Funcionario(String nome, int codigo, String cpf, String login, String senha){
-		super(nome);
 		this.codigo = codigo;
 		this.cpf = cpf;
 		this.login = login;
