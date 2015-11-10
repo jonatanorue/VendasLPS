@@ -7,13 +7,14 @@ public class Funcionario{
 	private String login;
 	private String senha;
 	private Caixa c;
+	private String nome;
 	
 	public Funcionario(){
-		super();
 		this.codigo = 0;
 		this.cpf = "";
 		this.login = "";
 		this.senha = "";
+		this.nome = "";
 	}
 	
 	public Funcionario(String nome, int codigo, String cpf, String login, String senha){
@@ -21,6 +22,7 @@ public class Funcionario{
 		this.cpf = cpf;
 		this.login = login;
 		this.senha = senha;
+		this.nome = nome;
 	}
 	
 	public void abrirCaixa(String horaAbertura, double valorCaixaAbertura){

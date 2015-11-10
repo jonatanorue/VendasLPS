@@ -1,6 +1,6 @@
 package br.ufms.bean;
 
-public class Produto {
+public abstract class Produto {
 	    
 	    private int codigo;
 	    private String descricao;
@@ -23,6 +23,20 @@ public class Produto {
 	        this.precoVendaVarejo = precoVarejo;
 	        this.precoVendaAtacado = precoAtacado;
 	    }
+	    
+	    public void cadastrarProduto(){
+	    	
+	    }
+	    
+	    public void buscarProduto(){
+	    	
+	    }
+	    
+	    // variabilidades, excluir e editar
+	    
+	    public abstract void excluirProduto();
+	    
+	    public abstract void editarProduto();
 
 	    /**
 	     * @return the codigoProduto
