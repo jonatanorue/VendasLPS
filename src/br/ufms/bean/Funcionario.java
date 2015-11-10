@@ -36,7 +36,6 @@ public class Funcionario{
 		c.setValorCaixaFechamento(valorCaixaFechamento);
 	}
 	
-	
 	public int getCodigo() {
 		return codigo;
 	}

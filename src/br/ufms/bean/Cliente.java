@@ -24,6 +24,18 @@ public abstract class Cliente {
 		this.tipoCliente = tipoCliente;
 	}
 	
+	public void cadastrarCliente(){
+		
+	}
+	
+	public void buscarCliente(){
+		
+	}
+	
+	public abstract void excluirCliente();
+	
+	public abstract void editarCliente();
+
 	public String getTelefone() {
 		return telefone;
 	}

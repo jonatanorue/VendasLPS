@@ -31,8 +31,23 @@ public class Venda {
 		// instanciar item venda e fazer a lista de produtos
 		
 	}
-		
 	
+	public void registrarPagamento(){
+		
+	}
+	
+	public void cancelarVenda(){
+		
+	}
+	
+	public void finalizarVenda(){
+		
+	}
+	
+	public void registrarVenda(){
+		
+	}
+		
 	public void imprimirNota(){
 		//imprimir lista de produtos
 	}
