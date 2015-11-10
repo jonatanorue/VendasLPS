@@ -1,6 +1,6 @@
 package br.ufms.bean;
 
-public class Venda {
+public abstract class Venda {
 	
 	private int codigoVenda;
 	private String dataVenda;
@@ -28,7 +28,7 @@ public class Venda {
 	}
 	
 	public void iniciarVenda(){
-		// instanciar item venda e fazer a lista de produtos
+		
 		
 	}
 	
@@ -51,6 +51,8 @@ public class Venda {
 	public void imprimirNota(){
 		//imprimir lista de produtos
 	}
+	
+	public abstract double calcularTroco(double valorPago);
 	
 	public String getTipoPagamento() {
 		return tipoPagamento;

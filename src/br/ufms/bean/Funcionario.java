@@ -1,6 +1,6 @@
 package br.ufms.bean;
 
-public class Funcionario{
+public abstract class Funcionario{
 	
 	private int codigo;
 	private String cpf;
@@ -24,6 +24,18 @@ public class Funcionario{
 		this.senha = senha;
 		this.nome = nome;
 	}
+	
+	public void cadastrarFuncionario(){
+		
+	}
+	
+	public void buscarFuncionario(){
+		
+	}
+	
+	public abstract void excluirFuncionario();
+	
+	public abstract void editarFuncionario();
 	
 	public void abrirCaixa(String horaAbertura, double valorCaixaAbertura){
 		c = new Caixa();
