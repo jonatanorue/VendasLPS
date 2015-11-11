@@ -21,6 +21,17 @@ public class Caixa {
 		this.valorCaixaFechamento = valorCaixaFechamento;
 	}
 	
+	public void abrirCaixa(String horaAbertura, double valorCaixaAbertura){
+		this.setHoraAbertura(horaAbertura);
+		this.setValorCaixaAbertura(valorCaixaAbertura);
+	}
+	
+	public void FecharCaixa(String horaFechamento, double valorCaixaFechamento){
+		this.setHoraFechamento(horaFechamento);
+		this.setValorCaixaFechamento(valorCaixaFechamento);
+	}
+	
+	
 	public String getHoraAbertura() {
 		return horaAbertura;
 	}

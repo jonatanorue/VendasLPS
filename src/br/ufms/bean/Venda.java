@@ -40,16 +40,12 @@ public abstract class Venda {
 		
 	}
 	
-	public void finalizarVenda(){
-		
-	}
-	
 	public void registrarVenda(){
 		
 	}
 		
 	public void imprimirNota(){
-		//imprimir lista de produtos
+		
 	}
 	
 	public abstract double calcularTroco(double valorPago);

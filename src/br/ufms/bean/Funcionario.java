@@ -37,16 +37,6 @@ public abstract class Funcionario{
 	
 	public abstract void editarFuncionario();
 	
-	public void abrirCaixa(String horaAbertura, double valorCaixaAbertura){
-		c = new Caixa();
-		c.setHoraAbertura(horaAbertura);
-		c.setValorCaixaAbertura(valorCaixaAbertura);
-	}
-	
-	public void FecharCaixa(String horaFechamento, double valorCaixaFechamento){
-		c.setHoraFechamento(horaFechamento);
-		c.setValorCaixaFechamento(valorCaixaFechamento);
-	}
 	
 	public int getCodigo() {
 		return codigo;
