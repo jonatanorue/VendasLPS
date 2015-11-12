@@ -1,5 +1,8 @@
 package br.ufms.bean;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public abstract class Venda {
 	
 	private int codigoVenda;
@@ -29,7 +32,13 @@ public abstract class Venda {
 	
 	public void iniciarVenda(){
 		
-		
+		this.codigoVenda = 0;
+		this.dataVenda = "";
+		this.horaVenda = "";
+		this.valorVenda = 0.0;
+		this.tipoPagamento = "";
+		this.valorPago = 0.0;
+			
 	}
 	
 	public void registrarPagamento(){
@@ -38,10 +47,16 @@ public abstract class Venda {
 	
 	public void cancelarVenda(){
 		
+		
+		
 	}
 	
 	public void registrarVenda(){
 		
+		Date d = new Date();
+		setDataVenda(d.getDay() + "/" + d.getMonth() + "/" + d.getYear());
+		setHoraVenda( d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() );
+			
 	}
 		
 	public void imprimirNota(){
