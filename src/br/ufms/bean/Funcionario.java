@@ -6,7 +6,6 @@ public abstract class Funcionario{
 	private String cpf;
 	private String login;
 	private String senha;
-	private Caixa c;
 	private String nome;
 	
 	public Funcionario(){
