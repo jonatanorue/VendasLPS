@@ -7,11 +7,8 @@ public class main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ConnectionManager connect = new ConnectionManager();
-		
-		connect.ConnectDB("vendasdb", "root", "root");	
-		connect.CloseDB();
-		
+		Cliente c = new Cliente("jonatan","99302019", "rua caranda, 61", "04987156121", "F");
+		c.excluirCliente(c);
 	}
 
 }

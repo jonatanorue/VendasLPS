@@ -64,8 +64,8 @@ public class daoCliente {
 					return false;
 				}else{
 				
-					String sqlInsert = "DELETE FROM Cliente WHERE cpf_cnpj = '?';";
-					PreparedStatement ps = connection.prepareStatement(sqlInsert);
+					String sqlDelete = "DELETE FROM Cliente WHERE cpf_cnpj = ?;";
+					PreparedStatement ps = connection.prepareStatement(sqlDelete);
 					ps.setString(1, c.getCpf_cnpj());
 					
 					ps.execute();
