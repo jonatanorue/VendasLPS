@@ -1,4 +1,5 @@
 package br.ufms.bean;
+import br.ufms.dao.daoProduto;
 
 public abstract class Produto {
 	    
@@ -16,7 +17,7 @@ public abstract class Produto {
 	        this.precoVendaVarejo = 0.0;
 	    }
 	    
-	    public Produto(int codigoProduto, String descricao, String fabricante, double precoVarejo, double precoAtacado){
+	    public Produto( String descricao, String fabricante, double precoVarejo, double precoAtacado){
 	        this.codigo = codigoProduto;
 	        this.fabricante = fabricante;
 	        this.descricao = descricao;
@@ -24,8 +25,8 @@ public abstract class Produto {
 	        this.precoVendaAtacado = precoAtacado;
 	    }
 	    
-	    public void cadastrarProduto(){
-	    	
+	    public void cadastrarProduto( String fabricante, double precoVarejo, double precoAtacado){
+	    	 ( fabricante, precoVarejo, precoAtacado);  
 	    }
 	    
 	    public void buscarProduto(){
