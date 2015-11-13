@@ -9,12 +9,9 @@ public class main {
 	public static void main(String[] args) {
 		ConnectionManager connect = new ConnectionManager();
 		
-		connect.ConnectDB("vendasdb", "root", "ajuakirb4c");
-		
+		connect.ConnectDB("vendasdb", "root", "root");	
 		connect.CloseDB();
 		
-		
-
 	}
 
 }

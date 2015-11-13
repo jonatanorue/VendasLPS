@@ -16,7 +16,7 @@ public class ConnectionManager{
     static Statement stmt;
 
     // Conexao - carrega o driver e realiza a conexao com o banco
-    public static void ConnectDB(String fonte, String user, String password) {
+    public void ConnectDB(String fonte, String user, String password) {
       try {
 
     	String url = "jdbc:mysql://localhost:3306/" + fonte;
@@ -46,5 +46,9 @@ public class ConnectionManager{
         System.out.println("Problema no fechamento da base de dados!");
       }
     }
+   
+   public Connection getConnection(){	   
+	   return con;	   
+   }
 
 } // end class
