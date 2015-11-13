@@ -29,15 +29,31 @@ public class Cliente {
 	public void cadastrarCliente(Cliente c){
 		
 		daoCliente dc = new daoCliente(c);
-		dc.save(getCpf_cnpj());
+		if(dc.salvar()){
+			System.out.println("Cliente inserido com sucesso!");
+		}else{
+			System.out.println("Cliente já cadastrado!");
+		}
 		
 	}
 	
-	public void buscarCliente(){
-		
+	public void buscarCliente(Cliente c){
+		daoCliente dc = new daoCliente(c);
+		if(dc.buscar()){
+			System.out.println("Cliente existente!");
+		}else{
+			System.out.println("Cliente não encontrado!");
+		}
 	}
 	
-	public void excluirCliente(){
+	public void excluirCliente(Cliente c){
+		
+		daoCliente dc = new daoCliente(c);
+		if(dc.excluir()){
+			System.out.println("Cliente excluído com sucesso!");
+		}else{
+			System.out.println("Cliente não existente!");
+		}
 		
 	}
 	
