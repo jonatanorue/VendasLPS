@@ -1,65 +1,77 @@
-/*package br.ufms.dao;
-
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
-
-
-public class daoCliente {
-	
-	private ConnectionManager cm;
-	private Connection connection;    
-	    
-	
-	 public daoCliente(){
-		
-		 //cm.ConnectDB("vendasdb", "root", "root");
-	 }
-	 
-
-	public void save (String cpf_cnpj){
-		String sqlConsulta = "SELECT * FROM Cliente where cpf_cnpj = '?';";
-		try{
-			cm = new ConnectionManager();
-			cm.ConnectDB("vendasdb", "root", "root");
-			connection =  cm.getConnection();
-		}catch (Exception ex){
-			
-		}
-		
-		PreparedStatement ps  = new this.connection.prepareStatement(sqlConsulta);
-	}
-	
-}*/
-
 package br.ufms.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import br.ufms.bean.CategoriaExemplar;
-import br.ufms.factory.ConnectionFactory;
+
+import br.ufms.bean.Cliente;
 
 public class daoCliente {
 	private final Connection connection;
+	private Cliente c;
 
-	public daoCliente() {
+	public daoCliente(Cliente c) {
 		connection = new ConnectionFactory().getConnection();
+		this.c = c;
 	}
 
-	public boolean save (String cpf_cnpj){
+	public boolean salvar (){
 		try {
 			Statement stmt = connection.createStatement();
-			String sqlConsulta = "SELECT * FROM Cliente where cpf_cnpj = '" + cpf_cnpj + "';";
+			String sqlConsulta = "SELECT * FROM Cliente where cpf_cnpj = '" + c.getCpf_cnpj() + "';";
 			ResultSet rs = stmt.executeQuery(sqlConsulta);
 			if (rs.next()) {
 				return false;
 			}
-			String sqlInsert = "INSERT INTO Cliente () VALUES(?)";
-			PreparedStatement psstmt = connection.prepareStatement(sqlInsert);
-			psstmt.setString(1, categoriaExemplar.getDescricao());
-			psstmt.execute();
+			
+			String sqlInsert = "INSERT INTO Cliente (telefone, endereco, nome, tipoCliente, cpf_cnpj) VALUES(?, ?, ?, ?, ?);";
+			PreparedStatement ps = connection.prepareStatement(sqlInsert);
+			ps.setString(1, c.getTelefone());
+			ps.setString(2, c.getEndereco());
+			ps.setString(3, c.getNome());
+			ps.setString(4, c.getTipoCliente());
+			ps.setString(5, c.getCpf_cnpj());
+			
+			ps.execute();
+			
 			return true;
 		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public boolean buscar(){
+		try {
+			Statement stmt = connection.createStatement();
+			String sqlConsulta = "SELECT * FROM Cliente where cpf_cnpj = '" + c.getCpf_cnpj() + "';";
+			ResultSet rs = stmt.executeQuery(sqlConsulta);
+			if (rs.next()) {
+				return true;
+			}else {
+				return false;
+			}	
+		}catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public boolean excluir(){
+		try {
+				Statement stmt = connection.createStatement();
+				String sqlConsulta = "SELECT * FROM Cliente where cpf_cnpj = '" + c.getCpf_cnpj() + "';";
+				ResultSet rs = stmt.executeQuery(sqlConsulta);
+				if (!rs.next()) {
+					return false;
+				}else{
+				
+					String sqlInsert = "DELETE FROM Cliente WHERE cpf_cnpj = '?';";
+					PreparedStatement ps = connection.prepareStatement(sqlInsert);
+					ps.setString(1, c.getCpf_cnpj());
+					
+					ps.execute();
+					return true;
+				}
+		}catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
