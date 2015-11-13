@@ -2,7 +2,7 @@ package br.ufms.bean;
 
 import br.ufms.dao.daoCliente;
 
-public abstract class Cliente {
+public class Cliente {
 	
 	private String telefone;
 	private String endereco;
@@ -25,10 +25,10 @@ public abstract class Cliente {
 		this.cpf_cnpj = cpf_cnpj;
 		this.tipoCliente = tipoCliente;
 	}
-	
-	public void cadastrarCliente(){
+
+	public void cadastrarCliente(Cliente c){
 		
-		daoCliente dc = new daoCliente();
+		daoCliente dc = new daoCliente(c);
 		dc.save(getCpf_cnpj());
 		
 	}
@@ -37,9 +37,13 @@ public abstract class Cliente {
 		
 	}
 	
-	public abstract void excluirCliente();
+	public void excluirCliente(){
+		
+	}
 	
-	public abstract void editarCliente();
+	public void editarCliente(){
+		
+	}
 
 	public String getTelefone() {
 		return telefone;
