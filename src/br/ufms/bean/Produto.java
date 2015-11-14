@@ -1,7 +1,8 @@
 package br.ufms.bean;
+import br.ufms.dao.daoCliente;
 import br.ufms.dao.daoProduto;
 
-public abstract class Produto {
+public class Produto {
 	    
 	    private int codigo;
 	    private String descricao;
@@ -18,7 +19,7 @@ public abstract class Produto {
 	    }
 	    
 	    public Produto( String descricao, String fabricante, double precoVarejo, double precoAtacado){
-	        this.codigo = codigoProduto;
+	        
 	        this.fabricante = fabricante;
 	        this.descricao = descricao;
 	        this.precoVendaVarejo = precoVarejo;
@@ -26,7 +27,11 @@ public abstract class Produto {
 	    }
 	    
 	    public void cadastrarProduto( String fabricante, double precoVarejo, double precoAtacado){
-	    	 ( fabricante, precoVarejo, precoAtacado);  
+	    	daoProduto daoProduto = new daoProduto();
+	    	daoProduto.inserir(new Produto(fabricante, fabricante, precoVarejo, precoAtacado));
+	    	
+	    	
+	    	   
 	    }
 	    
 	    public void buscarProduto(){
@@ -35,9 +40,11 @@ public abstract class Produto {
 	    
 	    // variabilidades, excluir e editar
 	    
-	    public abstract void excluirProduto();
+	    public void excluirProduto() {
+		}
 	    
-	    public abstract void editarProduto();
+	    public void editarProduto() {
+		}
 
 	    /**
 	     * @return the codigoProduto
@@ -108,6 +115,14 @@ public abstract class Produto {
 	    public void setPrecoVendaAtacado(double precoAtacado) {
 	        this.precoVendaAtacado = precoAtacado;
 	    }
+	    
+	    /*public void mostraDados(){
+
+	        System.out.println("O codigo deste funcionario e: " + codigo);
+	        System.out.println("O nome deste produto é: " + descricao);
+	        System.out.println("O fabricante deste produto é: " + fabricante);
+	        this.endereco.exibirEndereco();
+	      }*/
 	    
 	}
 
