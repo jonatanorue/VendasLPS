@@ -75,6 +75,19 @@ public class daoCliente {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public int getId(){
+		try {
+			Statement stmt = connection.createStatement();
+			String sqlConsulta = "SELECT (idCliente) FROM Cliente where cpf_cnpj = '" + c.getCpf_cnpj() + "';";
+			ResultSet rs = stmt.executeQuery(sqlConsulta);
+			return rs.getInt("idCliente");
+				
+		}catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
 }
 
 

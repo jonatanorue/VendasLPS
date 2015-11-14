@@ -1,9 +1,13 @@
 package br.ufms.bean;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
-public abstract class Venda {
+import br.ufms.dao.daoVenda;
+
+public class Venda {
 	
 	private int codigoVenda;
 	private String dataVenda;
@@ -11,59 +15,103 @@ public abstract class Venda {
 	private double valorVenda;
 	private String tipoPagamento;
 	private double valorPago;
+	private Funcionario f;
+	private Cliente c;
+	private ArrayList<ItemProduto> listaP;
 	
-	public Venda(){
-		this.codigoVenda = 0;
-		this.dataVenda = "";
-		this.horaVenda = "";
-		this.valorVenda = 0.0;
-		this.tipoPagamento = "";
-		this.valorPago = 0.0;
+	public Venda(Cliente c, Funcionario f){
+		this.c = c;
+		this.f = f;
+		
+		Scanner s = new Scanner(System.in);
+		
+		iniciarVenda();
+		System.out.println("Deseja confirmar venda? \n 1 - Sim \n 2 - Não \n");
+		int op = s.nextInt();
+		switch(op){
+			case 1 : System.out.print("Digite o valor Pago: ");				 
+					 registrarPagamento(s.nextDouble()); 
+					 registrarVenda();
+					 imprimirNota(); break;
+			case 2 : cancelarVenda(); break;
+		}
 	}
 	
-	public Venda(int codigoVenda, String dataVenda, String horaVenda, double valorVenda, String tipoPagamento, double valorPago){
+	/*public Venda(int codigoVenda, String dataVenda, String horaVenda, double valorVenda, String tipoPagamento, double valorPago){
 		this.codigoVenda = codigoVenda;
 		this.dataVenda = dataVenda;
 		this.horaVenda = horaVenda;
 		this.valorVenda = valorVenda;
 		this.tipoPagamento = tipoPagamento;
 		this.valorPago = valorPago;
+	}*/
+	
+	public void iniciarVenda(){		
+		//Chamar item e criar venda
+		listaP = new ArrayList<ItemProduto>();
+		Scanner s = new Scanner(System.in);
+		this.valorVenda = 0; 
+		System.out.println("Incluir novo Produto? \n 1 - Sim \n 2 - Não \n");
+		while(s.nextInt() == 1){
+			ItemProduto ip = new ItemProduto();
+			System.out.println("Codigo do Produto: ");
+			int codigoP = s.nextInt();
+			System.out.println("Quantidade: ");
+			int qtdP = s.nextInt(); 
+			ip.incluirItem(codigoP, qtdP);
+			System.out.println("Incluir novo Produto? \n 1 - Sim \n 2 - Não \n");
+			this.valorVenda += ip.getValorItem(); 
+		}
+		
+		Date d = new Date();
+		setDataVenda(d.getDay() + "/" + d.getMonth() + "/" + d.getYear());
+		setHoraVenda( d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());			
 	}
 	
-	public void iniciarVenda(){
-		
+	public void registrarPagamento(double valorPago){
+		this.valorPago = valorPago;
+		Scanner s = new Scanner(System.in);
+		System.out.println("Qual tipo de pagamento? \n (1) Dinheiro \n (2) Cartão de crédito \n (3) Cartão de débito \n (4) Cheque \n");
+		int tipoP = s.nextInt();
+		switch(tipoP){
+			case 1 : this.tipoPagamento = "DI"; 
+				     System.out.println("Troco: " + calcularTroco());
+					 break;
+			case 2 : this.tipoPagamento = "CC"; break;
+			case 3 : this.tipoPagamento = "CD"; break;
+			case 4 : this.tipoPagamento = "CH"; break;
+		}
+	}
+	
+	public void cancelarVenda(){
 		this.codigoVenda = 0;
 		this.dataVenda = "";
 		this.horaVenda = "";
 		this.valorVenda = 0.0;
 		this.tipoPagamento = "";
-		this.valorPago = 0.0;
-			
+		this.valorPago = 0.0;		
 	}
 	
-	public void registrarPagamento(){
-		
-	}
-	
-	public void cancelarVenda(){
-		
-		
-		
-	}
-	
-	public void registrarVenda(){
-		
-		Date d = new Date();
-		setDataVenda(d.getDay() + "/" + d.getMonth() + "/" + d.getYear());
-		setHoraVenda( d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() );
-			
+	public void registrarVenda(){		
+		 daoVenda dv = new daoVenda(this, f, c);
+		 dv.salvar();
 	}
 		
 	public void imprimirNota(){
+		//Pegar lista de produtos e imprimir
+		System.out.println("CUPOM FISCAL");
+		System.out.println("Cliente: " + c.getNome() + " cpf/cnpj: " + c.getCpf_cnpj());
+		System.out.println("Funcionario: " + f.getCodigo());
+		for(int i=0; i < listaP.size(); i++){
+			System.out.println("Codigo: " + listaP.get(i).getP().getCodigo() + " Quantidade: " + listaP.get(i).getQtdProdutos() + " Preco: " + listaP.get(i).getValorItem());
+		}
+		System.out.println("Preço total: " + this.valorVenda);
 		
 	}
 	
-	public abstract double calcularTroco(double valorPago);
+	public double calcularTroco(){
+		return (this.valorPago - this.valorVenda);
+	}
 	
 	public String getTipoPagamento() {
 		return tipoPagamento;

@@ -9,6 +9,7 @@ public class Cliente {
 	private String nome;
 	private String cpf_cnpj;
 	private String tipoCliente;
+	private daoCliente dc;
 	
 	public Cliente(){
 		this.telefone = "";
@@ -24,11 +25,12 @@ public class Cliente {
 		this.nome = nome;
 		this.cpf_cnpj = cpf_cnpj;
 		this.tipoCliente = tipoCliente;
+		
+		this.dc = new daoCliente(this);
 	}
 
-	public void cadastrarCliente(Cliente c){
-		
-		daoCliente dc = new daoCliente(c);
+	public void cadastrarCliente() {
+
 		if(dc.salvar()){
 			System.out.println("Cliente inserido com sucesso!");
 		}else{
@@ -37,8 +39,8 @@ public class Cliente {
 		
 	}
 	
-	public void buscarCliente(Cliente c){
-		daoCliente dc = new daoCliente(c);
+	public void buscarCliente(){
+		
 		if(dc.buscar()){
 			System.out.println("Cliente existente!");
 		}else{
@@ -46,15 +48,18 @@ public class Cliente {
 		}
 	}
 	
-	public void excluirCliente(Cliente c){
+	public void excluirCliente(){
 		
-		daoCliente dc = new daoCliente(c);
 		if(dc.excluir()){
 			System.out.println("Cliente excluído com sucesso!");
 		}else{
 			System.out.println("Cliente não existente!");
 		}
 		
+	}
+	
+	public int getCodigoCliente(){
+		return dc.getId();
 	}
 	
 	public void editarCliente(){
