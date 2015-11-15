@@ -37,17 +37,8 @@ public class Venda {
 		}
 	}
 	
-	/*public Venda(int codigoVenda, String dataVenda, String horaVenda, double valorVenda, String tipoPagamento, double valorPago){
-		this.codigoVenda = codigoVenda;
-		this.dataVenda = dataVenda;
-		this.horaVenda = horaVenda;
-		this.valorVenda = valorVenda;
-		this.tipoPagamento = tipoPagamento;
-		this.valorPago = valorPago;
-	}*/
-	
 	public void iniciarVenda(){		
-		//Chamar item e criar venda
+		
 		listaP = new ArrayList<ItemProduto>();
 		Scanner s = new Scanner(System.in);
 		this.valorVenda = 0; 
@@ -59,6 +50,7 @@ public class Venda {
 			System.out.println("Quantidade: ");
 			int qtdP = s.nextInt(); 
 			ip.incluirItem(codigoP, qtdP);
+			listaP.add(ip);
 			System.out.println("Incluir novo Produto? \n 1 - Sim \n 2 - Não \n");
 			this.valorVenda += ip.getValorItem(); 
 		}

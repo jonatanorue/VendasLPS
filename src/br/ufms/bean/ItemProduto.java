@@ -18,6 +18,7 @@ public class ItemProduto {
 		p = new Produto();
 		p.setCodigo(codigoProduto);
 		// criar função em produto que constroi o objeto produto apartir do codigo de barras para nossa lista
+		//p.constructObject();
 	 }
 	
 	public void editarItem(){

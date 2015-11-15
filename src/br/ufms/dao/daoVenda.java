@@ -25,14 +25,6 @@ public class daoVenda {
 	
 	public boolean salvar (){
 		try {
-			Statement stmt = connection.createStatement();
-			// Verificar se a venda existe com a data hora, id funcionario e id do cliente
-			String sqlConsulta = "SELECT * FROM Venda where Funcionario_idFuncionario = " + f.getCodigoFuncionario() + " Cliente_idCliente = " 
-					+ c.getCodigoCliente()	+ " DataVenda = '" + v.getDataVenda() + "' and HoraVenda = '" + v.getHoraVenda() + "';";
-			ResultSet rs = stmt.executeQuery(sqlConsulta);
-			if (rs.next()) {
-				return false;
-			}
 			
 			String sqlInsert = "INSERT INTO Venda (Funcionario_idFuncionario, Cliente_idCliente, dataVenda, horaVenda, valorVenda, tipoPagamento, valorPago) VALUES(?, ?, ?, ?, ?, ?, ?);";
 			PreparedStatement ps = connection.prepareStatement(sqlInsert);
@@ -51,6 +43,4 @@ public class daoVenda {
 			throw new RuntimeException(e);
 		}
 	}
-
-	  
 }
