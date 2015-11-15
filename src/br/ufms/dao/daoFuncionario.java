@@ -81,7 +81,7 @@ public class daoFuncionario {
 				Statement stmt = connection.createStatement();
 				String sqlConsulta = "SELECT (idFuncionario) FROM Funcionario where cpf = '" + f.getCpf() + "';";
 				ResultSet rs = stmt.executeQuery(sqlConsulta);
-				return rs.getInt("idCFuncionario");
+				return rs.getInt("idFuncionario");
 					
 			}catch (Exception e) {
 				throw new RuntimeException(e);
