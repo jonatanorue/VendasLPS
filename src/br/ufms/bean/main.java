@@ -7,9 +7,9 @@ public class main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Cliente c = new Cliente("jonatan","99302019", "rua caranda, 61", "04987156121", "F");	
-		c.cadastrarCliente();
-		System.out.print(c.getCodigoCliente());
+		
+		Funcionario f = new Funcionario("049871", "joao1993", "123456", "jonatan");
+		f.cadastrarFuncionario();
 		
 	}
 
