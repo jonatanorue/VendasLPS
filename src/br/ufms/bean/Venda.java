@@ -9,7 +9,6 @@ import br.ufms.dao.daoVenda;
 
 public class Venda {
 	
-	private int codigoVenda;
 	private String dataVenda;
 	private String horaVenda;
 	private double valorVenda;
@@ -17,6 +16,7 @@ public class Venda {
 	private double valorPago;
 	private Funcionario f;
 	private Cliente c;
+	private daoVenda dv;
 	private ArrayList<ItemProduto> listaP;
 	
 	public Venda(Cliente c, Funcionario f){
@@ -76,7 +76,6 @@ public class Venda {
 	}
 	
 	public void cancelarVenda(){
-		this.codigoVenda = 0;
 		this.dataVenda = "";
 		this.horaVenda = "";
 		this.valorVenda = 0.0;
@@ -85,7 +84,7 @@ public class Venda {
 	}
 	
 	public void registrarVenda(){		
-		 daoVenda dv = new daoVenda(this, f, c);
+		 dv = new daoVenda(this, f, c, listaP);
 		 dv.salvar();
 	}
 		
@@ -93,12 +92,16 @@ public class Venda {
 		//Pegar lista de produtos e imprimir
 		System.out.println("CUPOM FISCAL");
 		System.out.println("Cliente: " + c.getNome() + " cpf/cnpj: " + c.getCpf_cnpj());
-		System.out.println("Funcionario: " + f.getCodigo());
+		System.out.println("Funcionario: " + f.getCodigoFuncionario());
 		for(int i=0; i < listaP.size(); i++){
-			System.out.println("Codigo: " + listaP.get(i).getP().getCodigo() + " Quantidade: " + listaP.get(i).getQtdProdutos() + " Preco: " + listaP.get(i).getValorItem());
+			System.out.println("Codigo: " + listaP.get(i).getP().getCodigo() + " Quantidade: " + listaP.get(i).getQtdProdutos() + " Preco: " + listaP.get(i).getValorItem());			
 		}
 		System.out.println("Preço total: " + this.valorVenda);
 		
+	}
+	
+	public int getCodigoVenda(){
+		return dv.getId();	
 	}
 	
 	public double calcularTroco(){
@@ -121,12 +124,6 @@ public class Venda {
 		this.valorPago = valorPago;
 	}
 	
-	public int getCodigoVenda() {
-		return codigoVenda;
-	}
-	public void setCodigoVenda(int codigoVenda) {
-		this.codigoVenda = codigoVenda;
-	}
 	public String getDataVenda() {
 		return dataVenda;
 	}
