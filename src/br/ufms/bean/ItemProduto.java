@@ -35,11 +35,7 @@ public class ItemProduto {
 		}
 		return this.qtdProdutos*p.getPrecoVendaVarejo();
 	}
-	
-	public void salvarItem(){
-		daoItemProduto di = new daoItemProduto();
-	}
-	
+		
 	public int getQtdProdutos() {
 		return qtdProdutos;
 	}

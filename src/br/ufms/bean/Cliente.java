@@ -17,6 +17,8 @@ public class Cliente {
 		this.nome = "";
 		this.cpf_cnpj = "";
 		this.tipoCliente = "";
+		
+		this.dc = new daoCliente(this);
 	}
 	
 	public Cliente(String nome, String telefone, String endereco, String cpf_cnpj, String tipoCliente){
