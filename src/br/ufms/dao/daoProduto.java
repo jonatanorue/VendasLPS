@@ -25,18 +25,18 @@ public class daoProduto {
 		try {
 			
 			Statement stmt = connection.createStatement();
-			String sqlConsulta = "SELECT * FROM produtos where descricao LIKE'" + pr.getDescricao() + "%';";
+			String sqlConsulta = "SELECT * FROM produto where descricao LIKE'" + pr.getDescricao() + "%';";
 			ResultSet rs = stmt.executeQuery(sqlConsulta);
 			if (rs.next()) {
 				return false;
 			}
 			
 
-			stmt.executeUpdate("INSERT INTO Produto VALUES('"
-					+ pr.getDescricao() + "', '" + pr.getFabricante() + "',"
+			stmt.executeUpdate("INSERT INTO Produto (descricao, fabricante, precoVendaAtac, precoVendaVare) VALUES('"
+					+ pr.getDescricao() + "', '" + pr.getFabricante() + "','"
 					+ pr.getPrecoVendaAtacado() + "', '"
 					+ pr.getPrecoVendaVarejo() + "')");
-			System.out.println("Inserida!");
+			
 					
 			return true;
 		} catch (Exception e) {
@@ -103,7 +103,7 @@ public class daoProduto {
 		try {
 			
 			Statement stmt = connection.createStatement();
-			String sqlConsulta = "SELECT * FROM produtos where idProduto = '" + idCod + "';";
+			String sqlConsulta = "SELECT * FROM produto where idProduto = '" + idCod + "';";
 			rs = stmt.executeQuery(sqlConsulta);
 			
 			if (rs.next()) {

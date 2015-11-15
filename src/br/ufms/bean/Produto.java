@@ -28,9 +28,9 @@ public class Produto {
 	        this.precoVendaAtacado = precoAtacado;
 	    }
 	    
-	    public void cadastrarProduto( String fabricante, double precoVarejo, double precoAtacado){
+	    public void cadastrarProduto(){
 	    	daoProduto daoProduto = new daoProduto();
-	    	if(daoProduto.inserir(new Produto(fabricante, fabricante, precoVarejo, precoAtacado))){
+	    	if(daoProduto.inserir(this)){
 	    		System.out.println("Produto inserido com sucesso!");
 			}else{
 				System.out.println("Produto já cadastrado!");
