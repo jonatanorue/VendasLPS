@@ -11,6 +11,7 @@ public class Caixa {
 	private double valorCaixaAbertura;
 	private double valorCaixaFechamento;
 	private Funcionario f;
+	private daoCaixa dc;
 	
 	public Caixa(Funcionario f){
 		this.f = f;	
@@ -18,19 +19,21 @@ public class Caixa {
 	
 	public void abrirCaixa(double valorCaixaAbertura){
 		Date d = new Date();
-		setHoraAbertura( d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
-		this.setHoraAbertura(horaAbertura);
+		this.setHoraAbertura( d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
 		this.setValorCaixaAbertura(valorCaixaAbertura);
+		this.setHoraFechamento(d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
+		this.setValorCaixaFechamento(valorCaixaAbertura);
+		
+		dc = new daoCaixa(this, f);
+		dc.salvar();
 	}
 	
 	public void FecharCaixa(double valorCaixaFechamento){
 		Date d = new Date();
 		setHoraFechamento( d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
-		this.setHoraFechamento(horaFechamento);
 		this.setValorCaixaFechamento(valorCaixaFechamento);
 		
-		daoCaixa dc = new daoCaixa(this, f);
-		dc.salvar();
+		dc.atualizar(this);
 	}
 	
 	
