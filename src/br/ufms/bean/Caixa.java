@@ -6,8 +6,8 @@ import br.ufms.dao.daoCaixa;
 
 public class Caixa {
 	
-	private String horaAbertura;
-	private String horaFechamento;
+	private Date horaAbertura;
+	private Date horaFechamento;
 	private double valorCaixaAbertura;
 	private double valorCaixaFechamento;
 	private Funcionario f;
@@ -19,9 +19,9 @@ public class Caixa {
 	
 	public void abrirCaixa(double valorCaixaAbertura){
 		Date d = new Date();
-		this.setHoraAbertura( d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
+		this.setHoraAbertura(d);
 		this.setValorCaixaAbertura(valorCaixaAbertura);
-		this.setHoraFechamento(d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
+		this.setHoraFechamento(d);
 		this.setValorCaixaFechamento(valorCaixaAbertura);
 		
 		dc = new daoCaixa(this, f);
@@ -30,25 +30,29 @@ public class Caixa {
 	
 	public void FecharCaixa(double valorCaixaFechamento){
 		Date d = new Date();
-		setHoraFechamento( d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
+		setHoraFechamento(d);
 		this.setValorCaixaFechamento(valorCaixaFechamento);
 		
 		dc.atualizar(this);
 	}
 	
 	
-	public String getHoraAbertura() {
+	public Date getHoraAbertura() {
 		return horaAbertura;
 	}
-	public void setHoraAbertura(String horaAbertura) {
+
+	public void setHoraAbertura(Date horaAbertura) {
 		this.horaAbertura = horaAbertura;
 	}
-	public String getHoraFechamento() {
+
+	public Date getHoraFechamento() {
 		return horaFechamento;
 	}
-	public void setHoraFechamento(String horaFechamento) {
+
+	public void setHoraFechamento(Date horaFechamento) {
 		this.horaFechamento = horaFechamento;
 	}
+
 	public double getValorCaixaAbertura() {
 		return valorCaixaAbertura;
 	}
