@@ -28,7 +28,9 @@ public class Produto {
 	    
 	    public void cadastrarProduto( String fabricante, double precoVarejo, double precoAtacado){
 	    	daoProduto daoProduto = new daoProduto();
-	    	daoProduto.inserir(new Produto(fabricante, fabricante, precoVarejo, precoAtacado));
+	    	if(daoProduto.inserir(new Produto(fabricante, fabricante, precoVarejo, precoAtacado))){
+	    		
+	    	}
 	    	
 	    	
 	    	   

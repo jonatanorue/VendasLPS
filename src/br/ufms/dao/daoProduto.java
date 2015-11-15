@@ -25,7 +25,7 @@ public class daoProduto {
 		try {
 			
 			Statement stmt = connection.createStatement();
-			String sqlConsulta = "SELECT * FROM produtos where idProduto = '" + pr.getCodigo() + "';";
+			String sqlConsulta = "SELECT * FROM produtos where descricao LIKE'" + pr.getDescricao() + "%';";
 			ResultSet rs = stmt.executeQuery(sqlConsulta);
 			if (rs.next()) {
 				return false;
@@ -77,7 +77,7 @@ public class daoProduto {
 		try {
 			
 			Statement stmt = connection.createStatement();
-			String sqlConsulta = "SELECT * FROM produtos where idProduto = '" + pr.getCodigo() + "';";
+			String sqlConsulta = "SELECT * FROM produtos where idProduto = '" + idCod + "';";
 			rs = stmt.executeQuery(sqlConsulta);
 			
 			while (rs.next()) {
@@ -92,7 +92,7 @@ public class daoProduto {
 			}
 			return resultados;
 		} catch (SQLException e) {
-			imprimeErro("Erro ao buscar pessoa", e.getMessage());
+			imprimeErro("Erro ao buscar produto", e.getMessage());
 			return null;
 		}
 
