@@ -1,34 +1,36 @@
 package br.ufms.bean;
 
+import java.util.Date;
+
+import br.ufms.dao.daoCaixa;
+
 public class Caixa {
 	
 	private String horaAbertura;
 	private String horaFechamento;
 	private double valorCaixaAbertura;
 	private double valorCaixaFechamento;
+	private Funcionario f;
 	
-	public Caixa(){
-		this.horaAbertura = "";
-		this.horaFechamento = "";
-		this.valorCaixaAbertura = 0.0;
-		this.valorCaixaFechamento = 0.0;
+	public Caixa(Funcionario f){
+		this.f = f;	
 	}
 	
-	public Caixa(String horaAbertura, String horaFechamento, double valorCaixaAbertura, double valorCaixaFechamento){
-		this.horaAbertura = horaAbertura;
-		this.horaFechamento = horaFechamento;
-		this.valorCaixaAbertura = valorCaixaAbertura;
-		this.valorCaixaFechamento = valorCaixaFechamento;
-	}
-	
-	public void abrirCaixa(String horaAbertura, double valorCaixaAbertura){
+	public void abrirCaixa(double valorCaixaAbertura){
+		Date d = new Date();
+		setHoraAbertura( d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
 		this.setHoraAbertura(horaAbertura);
 		this.setValorCaixaAbertura(valorCaixaAbertura);
 	}
 	
-	public void FecharCaixa(String horaFechamento, double valorCaixaFechamento){
+	public void FecharCaixa(double valorCaixaFechamento){
+		Date d = new Date();
+		setHoraFechamento( d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
 		this.setHoraFechamento(horaFechamento);
 		this.setValorCaixaFechamento(valorCaixaFechamento);
+		
+		daoCaixa dc = new daoCaixa(this, f);
+		dc.salvar();
 	}
 	
 	

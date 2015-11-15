@@ -17,8 +17,7 @@ public class ItemProduto {
 		this.qtdProdutos = qtd;
 		p = new Produto();
 		p.setCodigo(codigoProduto);
-		// criar função em produto que constroi o objeto produto apartir do codigo de barras para nossa lista
-		//p.constructObject();
+		this.p = p.contruirObjeto();
 	 }
 	
 	public void editarItem(){
