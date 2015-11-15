@@ -97,5 +97,35 @@ public class daoProduto {
 		}
 
 	}
+	public Produto buscarUnico(int idCod) {
+		
+		ResultSet rs;
+		try {
+			
+			Statement stmt = connection.createStatement();
+			String sqlConsulta = "SELECT * FROM produtos where idProduto = '" + idCod + "';";
+			rs = stmt.executeQuery(sqlConsulta);
+			
+			if (rs.next()) {
+				Produto temp = new Produto();
+				// pega todos os atributos do produto
+				temp.setCodigo(rs.getInt("idCodigo"));
+				temp.setDescricao(rs.getString("descricao"));
+				temp.setFabricante(rs.getString("fabricante"));
+				temp.setPrecoVendaAtacado(rs.getFloat("precoVendaAtac"));
+				temp.setPrecoVendaVarejo(rs.getFloat("precoVendaVare"));
+				return temp;
+			}
+			else{
+				return null;
+			}
+						
+		} catch (SQLException e) {
+			imprimeErro("Erro ao buscar produto", e.getMessage());
+			return null;
+		}
+		
+
+	}
 
 }

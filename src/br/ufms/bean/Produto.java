@@ -1,4 +1,6 @@
 package br.ufms.bean;
+import java.util.Vector;
+
 import br.ufms.dao.daoCliente;
 import br.ufms.dao.daoProduto;
 
@@ -29,11 +31,11 @@ public class Produto {
 	    public void cadastrarProduto( String fabricante, double precoVarejo, double precoAtacado){
 	    	daoProduto daoProduto = new daoProduto();
 	    	if(daoProduto.inserir(new Produto(fabricante, fabricante, precoVarejo, precoAtacado))){
-	    		
-	    	}
+	    		System.out.println("Produto inserido com sucesso!");
+			}else{
+				System.out.println("Produto já cadastrado!");
+			}
 	    	
-	    	
-	    	   
 	    }
 	    
 	    public void buscarProduto(){
@@ -118,6 +120,10 @@ public class Produto {
 	        this.precoVendaAtacado = precoAtacado;
 	    }
 	    
+	    public Produto construirObjeto(int idProduto){
+	    	daoProduto daoProduto = new daoProduto();
+	    	return daoProduto.buscarUnico(idProduto);
+	 	    }
 	    /*public void mostraDados(){
 
 	        System.out.println("O codigo deste funcionario e: " + codigo);
