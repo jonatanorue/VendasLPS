@@ -16,8 +16,7 @@ public class ItemProduto {
 	public void incluirItem(int codigoProduto, int qtd){
 		this.qtdProdutos = qtd;
 		p = new Produto();
-		p.setCodigo(codigoProduto);
-		this.p = p.contruirObjeto();
+		this.p = p.contruirObjeto(codigoProduto);
 	 }
 	
 	public void editarItem(){

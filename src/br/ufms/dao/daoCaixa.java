@@ -38,4 +38,22 @@ public class daoCaixa {
 		}
 		
 	}
+	
+	public void atualizar(Caixa cx){
+		this.cx = cx;
+		try {
+		
+			String sqlInsert = "UPDATE Caixa SET horaFechamento = ?, valorCaixaFechamento = ?);";
+			PreparedStatement ps = connection.prepareStatement(sqlInsert);
+			ps.setString(1, cx.getHoraFechamento());
+			ps.setDouble(2, cx.getValorCaixaFechamento());
+			
+			ps.execute();
+			ps.close();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		
+		
+	}
 }
