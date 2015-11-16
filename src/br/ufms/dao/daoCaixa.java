@@ -1,6 +1,7 @@
 package br.ufms.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 
 import br.ufms.bean.Caixa;
@@ -26,8 +27,8 @@ public class daoCaixa {
 			PreparedStatement ps = connection.prepareStatement(sqlInsert);
 			ps.setInt(1, f.getCodigoFuncionario());
 			ps.setDouble(2, cx.getValorCaixaAbertura());
-			ps.setString(3, cx.getHoraAbertura());
-			ps.setString(4, cx.getHoraFechamento());
+			ps.setDate(3, (Date) cx.getHoraAbertura());
+			ps.setDate(4, (Date) cx.getHoraFechamento());
 			ps.setDouble(5, cx.getValorCaixaFechamento());
 			
 			ps.execute();
@@ -45,7 +46,7 @@ public class daoCaixa {
 		
 			String sqlInsert = "UPDATE Caixa SET horaFechamento = ?, valorCaixaFechamento = ?);";
 			PreparedStatement ps = connection.prepareStatement(sqlInsert);
-			ps.setString(1, cx.getHoraFechamento());
+			ps.setDate(1, (Date) cx.getHoraFechamento());
 			ps.setDouble(2, cx.getValorCaixaFechamento());
 			
 			ps.execute();
